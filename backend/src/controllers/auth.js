@@ -1,6 +1,6 @@
 const User = require('../models/user');
+const Session = require('../models/user-session');
 const jwt = require('jsonwebtoken');
-const { use } = require('../routes/auth');
 
 exports.signup = (req, res, next) => {
 	//check user
@@ -40,6 +40,8 @@ exports.signin = (req, res) => {
 			if (user.authenticate(req.body.password)) {
 				const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 				const { _id, firstName, lastName, email, role, fullName } = user;
+				const _session = new Session({ user: user._id });
+				_session.save();
 				return res.status(200).json({ user: { _id, firstName, lastName, email, role, fullName }, token });
 			}
 		} else {

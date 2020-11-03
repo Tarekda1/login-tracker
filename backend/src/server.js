@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 //routes
 const authRoutes = require('./routes/auth');
-const adminRoutes = require('./routes/admin');
+const sessionRoutes = require('./routes/sessions');
 
 //initiallize .env
 env.config();
@@ -35,7 +35,7 @@ app.get('/', (req, res, next) => {
 
 //user route
 app.use('/api', authRoutes);
-app.use('/api', adminRoutes);
+app.use('/session', sessionRoutes);
 
 app.listen(process.env.PORT, () => {
 	console.log(`server listening on port: ${process.env.PORT}`);
