@@ -4,6 +4,7 @@ const env = require('dotenv');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 //routes
 const authRoutes = require('./routes/auth');
@@ -11,6 +12,14 @@ const sessionRoutes = require('./routes/sessions');
 
 //initiallize .env
 env.config();
+
+// allow cors requests from any origin and with credentials
+app.use(
+	cors({
+		origin: (origin, callback) => callback(null, true),
+		credentials: true
+	})
+);
 
 //mongo db connection
 mongoose
