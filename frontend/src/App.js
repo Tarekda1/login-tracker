@@ -5,11 +5,13 @@ import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-d
 import Sessions from './pages/Sessions';
 import Login from './pages/Login';
 import { PrivateRoute } from './components/PrivateRoute';
+import OtherSessions from './pages/OtherSessions';
 function App() {
 	return (
 		<Router>
 			<Switch>
 				<PrivateRoute exact path="/sessions" component={Sessions} />
+				<PrivateRoute exact path="/othersessions" component={OtherSessions} />
 				<Route path="/login">
 					<Login />
 				</Route>

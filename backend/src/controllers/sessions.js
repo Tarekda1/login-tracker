@@ -12,11 +12,11 @@ exports.getSessionByLoggedInUser = async (req, res, next) => {
 	}
 };
 
-exports.getSessionByUser = async (req, res, next) => {
-	let user = req.body.user;
+exports.getOtherUsersSessions = async (req, res, next) => {
+	let user = req.user;
 	console.log(user);
 	try {
-		let sessionsByUser = await Session.find({ user: mongoose.Types.ObjectId(user) }).populate('user');
+		let sessionsByUser = await Session.find({ user: { $ne: user } }).populate('user');
 		return res.status(200).json({ sessions: sessionsByUser });
 	} catch (error) {
 		res.status(400).json({ message: `err: ${error}` });

@@ -1,0 +1,15 @@
+.headerWrapper{
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 !important;
+  padding: 10px !important;
+  background: gainsboro !important;
+  /* border: none; */
+  border-radius: 0 !important;
+}
+
+.headerWrapper__menu{
+  margin: 0 !important;
+}
